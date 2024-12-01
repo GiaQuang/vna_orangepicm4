@@ -24,4 +24,149 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .pacifico-regular {
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .borel-regular {
+    font-family: "Borel", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  /* Apply custom Playpen Sans font with unique identifier and weight */
+  .playpen-sans-special-500 {
+    font-family: "Playpen Sans", cursive;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
+  .bonheur-royale-regular {
+    font-family: "Bonheur Royale", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .itim-regular {
+    font-family: "Itim", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+}
+
+.ellipse {
+  width: 32rem;
+
+  height: 20rem;
+
+  background: rgba(240, 22, 15, 0.932);
+
+  border-radius: 50%;
+}
+
+/* globals.css hoặc một file CSS khác */
+
+/* globals.css or another CSS file */
+body {
+  margin: 0;
+  padding: 0;
+  height: 50vh;
+  overflow: hidden; /* Prevent scrollbars */
+  background-color: #000; /* Black background to make the balls visible */
+}
+
+.ball {
+  position: absolute;
+  border-radius: 50%; /* Make the div a circle */
+  opacity: 0.7;
+  pointer-events: none; /* Prevent the balls from interfering with user interactions */
+}
+
+/* nền trang 1 */
+body {
+  font-family: "Josefin Sans", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.background {
+  background: linear-gradient(132deg, #fc415a, #591bc5, #212335);
+  background-size: 400% 400%;
+  animation: Gradient 15s ease infinite;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cube {
+  position: absolute;
+  top: 80vh;
+  left: 45vw;
+  width: 10px;
+  height: 10px;
+  border: solid 1px #d7d4e4;
+  transform-origin: top left;
+  transform: scale(0) rotate(0deg) translate(-50%, -50%);
+  animation: cube 12s ease-in forwards infinite;
+}
+
+.cube:nth-child(2n) {
+  border-color: #fff;
+}
+
+.cube:nth-child(2) {
+  animation-delay: 2s;
+  left: 25vw;
+  top: 40vh;
+}
+
+.cube:nth-child(3) {
+  animation-delay: 4s;
+  left: 75vw;
+  top: 50vh;
+}
+
+.cube:nth-child(4) {
+  animation-delay: 6s;
+  left: 90vw;
+  top: 10vh;
+}
+
+.cube:nth-child(5) {
+  animation-delay: 8s;
+  left: 10vw;
+  top: 85vh;
+}
+
+.cube:nth-child(6) {
+  animation-delay: 10s;
+  left: 50vw;
+  top: 10vh;
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes cube {
+  from {
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    opacity: 1;
+  }
+  to {
+    transform: scale(20) rotate(960deg) translate(-50%, -50%);
+    opacity: 0;
+  }
 }
