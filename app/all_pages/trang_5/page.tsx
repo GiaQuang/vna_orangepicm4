@@ -2,8 +2,17 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+  const [logo, setLogo] = useState("/Logo.png");
+
+  useEffect(() => {
+    const storedLogo = localStorage.getItem("logo");
+    if (storedLogo) {
+      setLogo(storedLogo);
+    }
+  }, []);
   return (
     <motion.div
       className="min-h-screen flex flex-col select-none relative bg-gray-100"
@@ -13,8 +22,17 @@ export default function Home() {
       transition={{ type: "mass", stiffness: 100 }}
     >
       <div className="min-h-screen flex flex-col select-none relative bg-gray-100">
-        <div className="absolute top-4 left-4">
+        {/* <div className="absolute top-4 left-4">
           <Image src="/Logo.png" alt="Logo" width={200} height={200} />
+        </div> */}
+        <div className="w-[200px] h-[90px] relative">
+          <Image
+            src={logo}
+            alt="Logo"
+            width={200}
+            height={90}
+            className="object-contain max-w-full max-h-full"
+          />
         </div>
         <div className="flex flex-1 items-center justify-center text-red-500 text-center text-[60px] pacifico-regular">
           Điều gì làm ảnh hưởng đến em trong buổi học hôm nay thế nhỉ?

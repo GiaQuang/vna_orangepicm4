@@ -170,3 +170,17 @@ body {
     opacity: 0;
   }
 }
+
+table {
+  table-layout: fixed; /* Cố định layout của bảng */
+  width: 100%; /* Đặt chiều rộng bảng, ví dụ: 100% hoặc 500px */
+}
+
+th,
+td {
+  width: auto; /* Tự điều chỉnh dựa trên nội dung */
+  text-align: center; /* Canh giữa nội dung */
+  height: 50px; /* Cố định chiều cao mỗi ô */
+  overflow: hidden; /* Ẩn nội dung tràn */
+  white-space: nowrap; /* Không xuống dòng */
+}

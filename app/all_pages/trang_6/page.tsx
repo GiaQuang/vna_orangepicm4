@@ -8,6 +8,14 @@ export default function Trang6() {
   const [userName, setUserName] = useState("");
   const [userSalutation, setUserSalutation] = useState("");
   const [countdown, setCountdown] = useState(10);
+  const [logo, setLogo] = useState("/Logo.png");
+
+  useEffect(() => {
+    const storedLogo = localStorage.getItem("logo");
+    if (storedLogo) {
+      setLogo(storedLogo);
+    }
+  }, []);
 
   useEffect(() => {
     const colors = ["#3CC157", "#2AA7FF", "#1B1B1B", "#FCBC0F", "#F85F36"];
@@ -80,12 +88,18 @@ export default function Trang6() {
       exit={{ y: "100%" }}
       transition={{ type: "mass", stiffness: 100 }}
     >
-      <div className="absolute top-4 left-4">
-        <Image src="/Logo.png" alt="Logo" width={200} height={200} />
+      <div className="w-[200px] h-[90px] relative">
+        <Image
+          src={logo}
+          alt="Logo"
+          width={200}
+          height={90}
+          className="object-contain max-w-full max-h-full"
+        />
       </div>
 
-      <div className="flex flex-col items-center justify-center min-h-screen">
-        <div className="text-[200px] text-red-500 bonheur-royale-regular mt-72">
+      <div className="flex flex-col items-center justify-center ">
+        <div className="text-[200px] text-red-500 bonheur-royale-regular mt-68">
           Cảm ơn,{" "}
           <span className="font-bold text-blue-500 ml-2">{userName}!</span>
         </div>
@@ -109,7 +123,7 @@ export default function Trang6() {
             Trang Chủ
           </button>
 
-          <div className="text-xl text-gray-300">
+          <div className="text-xl text-gray-300 ">
             Chuyển về trang chủ sau: {countdown}s
           </div>
         </div>

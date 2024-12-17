@@ -19,64 +19,61 @@ export default function Home() {
   const [userSalutation, setUserSalutation] = useState("");
   const [logo, setLogo] = useState("/Logo.png");
 
+  const API_KEY =
+    process.env.NEXT_PUBLIC_FPT_AI_API_KEY ||
+    "tMw3l0L4OLguLTPYl7VwSUsYGjLi6qad";
+
   // Lấy thông tin từ localStorage khi component mount
   useEffect(() => {
     const storedName = localStorage.getItem("userName");
     const storedSalutation = localStorage.getItem("userSalutation");
-    const storedLogo = localStorage.getItem("logo");
 
     if (storedName) setUserName(storedName);
     if (storedSalutation) setUserSalutation(storedSalutation);
-    if (storedLogo) setLogo(storedLogo);
+    const storedLogo = localStorage.getItem("logo");
+    if (storedLogo) {
+      setLogo(storedLogo);
+    }
   }, []);
 
-  // Phát âm thanh liền mạch bằng Web Audio API
+  // Phát âm thanh khi vừa vào trang
   useEffect(() => {
-    const playLocalAudio = async () => {
-      if (!userSalutation) return;
+    const audioTextTest = userName
+      ? userSalutation === "Anh"
+        ? `Hello ${userSalutation} ${userName} đẹp trai, chào mừng ${userSalutation} tới lớp`
+        : userSalutation === "Chị"
+        ? `Hello ${userSalutation} ${userName} xinh gái, chào mừng ${userSalutation} tới lớp`
+        : `Hello ${userSalutation} ${userName}, chào mừng ${userSalutation} tới lớp`
+      : "Chào bạn, chào mừng bạn tới lớp";
 
-      const salutation = userSalutation.toLowerCase();
+    if (audioTextTest) {
+      const fetchAudio = async () => {
+        try {
+          const response = await fetch("https://api.fpt.ai/hmi/tts/v5", {
+            method: "POST",
+            headers: {
+              "api-key": API_KEY,
+              "Content-Type": "text/plain",
+              voice: "banmai",
+              speed: "-1",
+            },
+            body: audioTextTest,
+          });
 
-      const audioFiles = [
-        "/sounds/k1_hello.mp3", // Hello
-        salutation === "anh"
-          ? "/sounds/k2_Anh.mp3" // "anh" nếu là nam
-          : salutation === "chị"
-          ? "/sounds/k2_1_Chi.mp3" // "chị" nếu là nữ
-          : null,
-        userName ? `/sounds/k3/${userName.toLowerCase()}.mp3` : null, // Tên nếu có
-        salutation === "anh"
-          ? "/sounds/k4_Dep_trai.mp3" // "đẹp trai" cho nam
-          : "/sounds/k4_1_Xinh_gai.mp3", // "xinh gái" cho nữ
-        "/sounds/k5_Chao_mung.mp3", // Chào mừng
-        salutation === "anh" ? "/sounds/k2_Anh.mp3" : "/sounds/k2_1_Chi.mp3", // "anh" hoặc "chị"
-        "/sounds/k5_Toi_lop.mp3", // tới lớp
-      ].filter(Boolean); // Xóa các giá trị null
-
-      // Sử dụng Web Audio API
-      // const audioContext = new (window.AudioContext ||
-      //   window.webkitAudioContext)();
-      const audioContext = new (window.AudioContext ||
-        (window as any).webkitAudioContext)();
-
-      const loadAndPlay = async (file) => {
-        const response = await fetch(file);
-        const arrayBuffer = await response.arrayBuffer();
-        const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-        const bufferSource = audioContext.createBufferSource();
-        bufferSource.buffer = audioBuffer;
-        bufferSource.connect(audioContext.destination);
-        bufferSource.start();
-        return new Promise((resolve) => (bufferSource.onended = resolve));
+          const data = await response.json();
+          if (data.async) {
+            const audio = new Audio(data.async);
+            audio.play();
+          } else {
+            console.error("Không nhận được URL âm thanh từ API");
+          }
+        } catch (error) {
+          console.error("Lỗi gọi API FPT.AI:", error);
+        }
       };
 
-      // Phát âm thanh liền mạch
-      for (const file of audioFiles) {
-        await loadAndPlay(file);
-      }
-    };
-
-    playLocalAudio();
+      fetchAudio();
+    }
   }, [userName, userSalutation]);
 
   const handleClick = () => {
@@ -95,7 +92,7 @@ export default function Home() {
   };
 
   const greetingText = userName
-    ? `${userName} à, chúc ${userSalutation.toLowerCase()} có một buổi học vui vẻ và bổ ích!`
+    ? `${userName} à, chúc ${userSalutation} có một buổi học vui vẻ và bổ ích!`
     : "Chúc bạn có một buổi học vui vẻ và bổ ích.";
 
   return (
@@ -107,6 +104,9 @@ export default function Home() {
       transition={{ type: "mass", stiffness: 100 }}
     >
       <div className="min-h-screen flex flex-col select-none relative bg-gray-100">
+        {/* <div className="absolute top-4 left-4">
+          <Image src="/Logo.png" alt="Logo" width={200} height={200} />
+        </div> */}
         <div className="w-[200px] h-[90px] relative">
           <Image
             src={logo}
@@ -120,7 +120,7 @@ export default function Home() {
         <div className="absolute top-32 w-full text-center text-[60px] text-red-500 pacifico-regular">
           {greetingText}
           <br />
-          <span>Hiện tại {userSalutation.toLowerCase()} cảm thấy thế nào?</span>
+          <span>Hiện tại {userSalutation} cảm thấy thế nào?</span>
         </div>
 
         <div className="flex flex-1 items-center justify-between text-red-500 text-[250px] mt-40">

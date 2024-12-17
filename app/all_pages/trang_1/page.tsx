@@ -9,8 +9,9 @@ import { useRouter } from "next/navigation";
 export default function Home() {
   const [time, setTime] = useState(new Date());
   const [name, setName] = useState("");
-  const [salutation, setSalutation] = useState("anh");
+  const [salutation, setSalutation] = useState("Anh");
   const router = useRouter();
+  const [logo, setLogo] = useState("/Logo.png");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -18,6 +19,12 @@ export default function Home() {
     }, 1000);
 
     return () => clearInterval(interval);
+  }, []);
+  useEffect(() => {
+    const storedLogo = localStorage.getItem("logo");
+    if (storedLogo) {
+      setLogo(storedLogo);
+    }
   }, []);
 
   const formattedTime = time.toLocaleTimeString("vi-VN", {
@@ -58,8 +65,17 @@ export default function Home() {
         <div key={index} className="cube"></div>
       ))}
       {/* Logo góc trên bên trái */}
-      <div className="absolute top-4 left-4">
+      {/* <div className="absolute top-4 left-4">
         <Image src="/Logo.png" alt="Logo" width={200} height={200} />
+      </div> */}
+      <div className="w-[200px] h-[90px] relative">
+        <Image
+          src={logo}
+          alt="Logo"
+          width={200}
+          height={90}
+          className="object-contain max-w-full max-h-full"
+        />
       </div>
 
       {/* Thời gian thực ở giữa màn hình */}
