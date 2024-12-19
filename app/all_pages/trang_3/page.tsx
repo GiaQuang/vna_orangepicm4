@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { FaArrowCircleRight } from "react-icons/fa";
-import { LuVolume2 } from "react-icons/lu";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react"; // Nhớ import useState
@@ -30,7 +29,7 @@ export default function Home() {
       const audio = new Audio(`/sounds/page3/${audioFile}`); // Đảm bảo rằng file âm thanh được lưu
 
       audio.onplay = () => {
-        console.log("Bắt đầu phát âm");
+        console.log("Bắt đầu phát âm thanh");
         setIsPlaying(true);
       };
 
@@ -92,9 +91,7 @@ export default function Home() {
             <div>Làm Được</div>
           </div>
         </div>
-        <div className="absolute bottom-4 left-4 text-blue-500 text-5xl cursor-pointer">
-          <LuVolume2 />
-        </div>
+
         <div
           className="absolute bottom-4 right-4 text-blue-500 text-5xl cursor-pointer"
           onClick={handleClick}

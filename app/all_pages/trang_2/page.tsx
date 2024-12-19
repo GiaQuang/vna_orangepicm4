@@ -19,7 +19,6 @@ export default function Home() {
   const [userSalutation, setUserSalutation] = useState("");
   const [logo, setLogo] = useState("/Logo.png");
 
-  // Lấy thông tin từ localStorage khi component mount
   useEffect(() => {
     const storedName = localStorage.getItem("userName");
     const storedSalutation = localStorage.getItem("userSalutation");
@@ -30,7 +29,6 @@ export default function Home() {
     if (storedLogo) setLogo(storedLogo);
   }, []);
 
-  // Phát âm thanh liền mạch bằng Web Audio API
   useEffect(() => {
     const playLocalAudio = async () => {
       if (!userSalutation) return;
@@ -53,27 +51,32 @@ export default function Home() {
         "/sounds/k5_Toi_lop.mp3", // tới lớp
       ].filter(Boolean); // Xóa các giá trị null
 
-      // Sử dụng Web Audio API
-      // const audioContext = new (window.AudioContext ||
-      //   window.webkitAudioContext)();
       const audioContext = new (window.AudioContext ||
         (window as any).webkitAudioContext)();
 
-      const loadAndPlay = async (file) => {
-        const response = await fetch(file);
-        const arrayBuffer = await response.arrayBuffer();
-        const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-        const bufferSource = audioContext.createBufferSource();
-        bufferSource.buffer = audioBuffer;
-        bufferSource.connect(audioContext.destination);
-        bufferSource.start();
-        return new Promise((resolve) => (bufferSource.onended = resolve));
+      const loadAndPlaySequentially = async (files) => {
+        for (const file of files) {
+          await playAudioFile(audioContext, file);
+        }
+      };
+
+      const playAudioFile = async (context, file) => {
+        try {
+          const response = await fetch(file);
+          const arrayBuffer = await response.arrayBuffer();
+          const audioBuffer = await context.decodeAudioData(arrayBuffer);
+          const source = context.createBufferSource();
+          source.buffer = audioBuffer;
+          source.connect(context.destination);
+          source.start();
+          return new Promise((resolve) => (source.onended = resolve));
+        } catch (error) {
+          console.error(`Error loading or playing ${file}:`, error);
+        }
       };
 
       // Phát âm thanh liền mạch
-      for (const file of audioFiles) {
-        await loadAndPlay(file);
-      }
+      await loadAndPlaySequentially(audioFiles);
     };
 
     playLocalAudio();

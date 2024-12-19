@@ -18,10 +18,12 @@ export default function Trang6() {
   }, []);
 
   useEffect(() => {
+    // Mảng màu sắc cho các hình bóng
     const colors = ["#3CC157", "#2AA7FF", "#1B1B1B", "#FCBC0F", "#F85F36"];
     const numBalls = 50;
     const balls = [];
 
+    // Tạo các hình bóng trên trang
     for (let i = 0; i < numBalls; i++) {
       let ball = document.createElement("div");
       ball.classList.add("ball");
@@ -67,15 +69,17 @@ export default function Trang6() {
       setUserSalutation(storedSalutation);
     }
 
+    // Đếm ngược thời gian
     const interval = setInterval(() => {
       setCountdown((prev) => {
         if (prev === 1) {
           clearInterval(interval);
+          // Chuyển trang sau khi đếm ngược kết thúc
           window.location.href = "trang_1";
         }
         return prev - 1;
       });
-    }, 1000); // 1 giây
+    }, 1000); // Đếm ngược mỗi giây
 
     return () => clearInterval(interval);
   }, []);
@@ -98,10 +102,12 @@ export default function Trang6() {
         />
       </div>
 
-      <div className="flex flex-col items-center justify-center ">
-        <div className="text-[200px] text-red-500 bonheur-royale-regular mt-68">
+      <div className="flex flex-col items-center justify-center mt-68">
+        <div className="text-[200px] text-red-500 bonheur-royale-regular">
           Cảm ơn,{" "}
-          <span className="font-bold text-blue-500 ml-2">{userName}!</span>
+          <span className="font-bold text-blue-500 ml-2">
+            {userName.charAt(0).toUpperCase() + userName.slice(1)}!
+          </span>
         </div>
 
         {/* Hẹn gặp lại */}
@@ -112,8 +118,11 @@ export default function Trang6() {
         </div>
 
         <div className="flex-grow"></div>
+      </div>
 
-        <div className="flex flex-col items-center justify-center mb-8">
+      {/* Thông báo đếm ngược ở cuối trang */}
+      <div className="text-xl text-gray-300 absolute bottom-0 left-0 right-0 text-center mb-8">
+        <div className="flex flex-col items-center justify-center">
           <button
             className="mb-4 px-6 py-3 bg-white text-gray-500 text-lg rounded-lg shadow-md hover:bg-gray-200 transition-all playpen-sans-special-500"
             onClick={() => {
@@ -122,11 +131,8 @@ export default function Trang6() {
           >
             Trang Chủ
           </button>
-
-          <div className="text-xl text-gray-300 ">
-            Chuyển về trang chủ sau: {countdown}s
-          </div>
         </div>
+        Chuyển về trang chủ sau: {countdown}s
       </div>
     </motion.div>
   );
