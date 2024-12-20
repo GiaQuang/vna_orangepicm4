@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { FaArrowCircleDown } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function Home() {
   const [time, setTime] = useState(new Date());
@@ -47,9 +48,16 @@ export default function Home() {
     if (name.trim()) {
       localStorage.setItem("userSalutation", salutation);
       localStorage.setItem("userName", name);
-      router.push("/all_pages/trang_2");
+      router.push("/orangepicm4/trang_2");
     } else {
-      alert("Vui lòng nhập tên!");
+      toast.success("Vui lòng nhập tên!", {
+        duration: 2000,
+        position: "top-right",
+        style: {
+          backgroundColor: "orange",
+          color: "white",
+        },
+      });
     }
   };
 
@@ -64,10 +72,6 @@ export default function Home() {
       {[1, 2, 3, 4, 5, 6].map((index) => (
         <div key={index} className="cube"></div>
       ))}
-      {/* Logo góc trên bên trái */}
-      {/* <div className="absolute top-4 left-4">
-        <Image src="/Logo.png" alt="Logo" width={200} height={200} />
-      </div> */}
       <div className="w-[200px] h-[90px] relative">
         <Image
           src={logo}
@@ -84,9 +88,9 @@ export default function Home() {
           <h1 className="text-8xl font-bold">{formattedTime}</h1>
           <p className="text-6xl mt-4">{formattedDate}</p>
 
-          {/* Form nhập xưng hô và tên */}
+          {/* Form nhập giới tính và tên */}
           <div className="mt-8 flex flex-col items-center gap-4">
-            {/* Select */}
+            {/* chọn giới tính */}
             <select
               className="text-xl border border-gray-300 rounded-md p-2 text-black"
               value={salutation}
@@ -96,7 +100,7 @@ export default function Home() {
               <option value="chị">Chị</option>
             </select>
 
-            {/* Input */}
+            {/* nhập tên*/}
             <input
               type="text"
               placeholder="Nhập tên"

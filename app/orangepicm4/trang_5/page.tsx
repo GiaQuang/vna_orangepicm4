@@ -22,9 +22,6 @@ export default function Home() {
       transition={{ type: "mass", stiffness: 100 }}
     >
       <div className="min-h-screen flex flex-col select-none relative bg-gray-100">
-        {/* <div className="absolute top-4 left-4">
-          <Image src="/Logo.png" alt="Logo" width={200} height={200} />
-        </div> */}
         <div className="w-[200px] h-[90px] relative">
           <Image
             src={logo}
@@ -39,7 +36,7 @@ export default function Home() {
         </div>
         <div className="flex flex-1 items-start justify-center text-white text-[50px] font-bold gap-16 playpen-sans-special-500">
           <div
-            className="ellipse flex items-center justify-center cursor-pointer"
+            className="ellipse flex items-center justify-center transform transition-transform duration-300 hover:scale-110 cursor-pointer"
             onClick={() => {
               window.location.href = "trang_6";
             }}
@@ -47,7 +44,7 @@ export default function Home() {
             Em Bị Mệt
           </div>
           <div
-            className="ellipse flex items-center justify-center cursor-pointer"
+            className="ellipse flex items-center justify-center transform transition-transform duration-300 hover:scale-110 cursor-pointer"
             onClick={() => {
               window.location.href = "trang_6";
             }}
@@ -55,7 +52,7 @@ export default function Home() {
             Kiến Thức Khó Hiểu
           </div>
           <div
-            className="ellipse flex flex-col items-center justify-center cursor-pointer"
+            className="ellipse flex flex-col items-center justify-center transform transition-transform duration-300 hover:scale-110 cursor-pointer"
             onClick={() => {
               window.location.href = "trang_6";
             }}

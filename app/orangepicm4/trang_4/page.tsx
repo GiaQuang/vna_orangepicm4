@@ -19,10 +19,16 @@ export default function Home() {
     }
   }, []);
 
+  const playSound = (soundFile) => {
+    const audio = new Audio(`/sounds/page4/${soundFile}`);
+    audio.play();
+  };
+
   const handleClick = (index) => {
     setRating(index);
 
     if (index <= 3) {
+      playSound("quack.mp3"); // Phát âm thanh cho đánh giá ≤ 3 sao
       toast.success("Ohhh, hãy cho ad biết nguyên nhân nhé!", {
         duration: 2000,
         position: "top-right",
@@ -33,9 +39,10 @@ export default function Home() {
       });
 
       setTimeout(() => {
-        router.push("/all_pages/trang_5");
+        router.push("/orangepicm4/trang_5"); // chuyển trang 5 nếu chọn <= 3 sao
       }, 3000);
     } else {
+      playSound("yeah.mp3"); // Phát âm thanh cho đánh giá > 3 sao
       toast.success("Tuyệt vời!", {
         duration: 2000,
         position: "top-right",
@@ -46,7 +53,7 @@ export default function Home() {
       });
 
       setTimeout(() => {
-        router.push("/all_pages/trang_6"); // Chuyển trang 6 nếu chọn 5 sao
+        router.push("/orangepicm4/trang_6"); // Chuyển trang 6 nếu chọn 5 sao
       }, 2000);
     }
   };
@@ -60,10 +67,6 @@ export default function Home() {
       transition={{ type: "mass", stiffness: 100 }}
     >
       <div className="min-h-screen flex flex-col select-none relative bg-gray-100">
-        {/* Logo góc trên bên trái */}
-        {/* <div className="absolute top-4 left-4">
-          <Image src="/Logo.png" alt="Logo" width={200} height={200} />
-        </div> */}
         <div className="w-[200px] h-[90px] relative">
           <Image
             src={logo}
@@ -73,8 +76,9 @@ export default function Home() {
             className="object-contain max-w-full max-h-full"
           />
         </div>
-        <div className="absolute top-32 w-full text-center text-[60px] text-red-500 pacifico-regular ">
-          Buổi Học Hôm Nay Ổn Không Em Ơi!
+        <div className="absolute top-32 w-full text-center text-[60px] text-red-500 pacifico-regular py-2">
+          Buổi Học Hôm Nay Ổn Không Em Ơi, <br />
+          Hãy đánh giá bằng những ngôi sao nhé!
         </div>
 
         <div className="flex flex-1 items-center justify-center text-yellow-500 text-[200px] font-bold">

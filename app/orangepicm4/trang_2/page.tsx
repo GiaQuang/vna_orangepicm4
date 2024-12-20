@@ -36,20 +36,22 @@ export default function Home() {
       const salutation = userSalutation.toLowerCase();
 
       const audioFiles = [
-        "/sounds/k1_hello.mp3", // Hello
+        "/sounds/page2/k1_hello.mp3", // sound "Hello"
         salutation === "anh"
-          ? "/sounds/k2_Anh.mp3" // "anh" nếu là nam
+          ? "/sounds/page2/k2_Anh.mp3" // sound "anh" nếu là nam
           : salutation === "chị"
-          ? "/sounds/k2_1_Chi.mp3" // "chị" nếu là nữ
+          ? "/sounds/page2/k2_Chi.mp3" // sound "chị" nếu là nữ
           : null,
-        userName ? `/sounds/k3/${userName.toLowerCase()}.mp3` : null, // Tên nếu có
+        userName ? `/sounds/ten_hoc_sinh/${userName.toLowerCase()}.mp3` : null, // Tên nếu có
         salutation === "anh"
-          ? "/sounds/k4_Dep_trai.mp3" // "đẹp trai" cho nam
-          : "/sounds/k4_1_Xinh_gai.mp3", // "xinh gái" cho nữ
-        "/sounds/k5_Chao_mung.mp3", // Chào mừng
-        salutation === "anh" ? "/sounds/k2_Anh.mp3" : "/sounds/k2_1_Chi.mp3", // "anh" hoặc "chị"
-        "/sounds/k5_Toi_lop.mp3", // tới lớp
-      ].filter(Boolean); // Xóa các giá trị null
+          ? "/sounds/page2/k4_Dep_trai.mp3" // sound "đẹp trai" cho nam
+          : "/sounds/page2/k4_Xinh_gai.mp3", // sound "xinh gái"
+        "/sounds/page2/k5_Chao_mung.mp3", // Chào mừng
+        salutation === "anh"
+          ? "/sounds/page2/k2_Anh.mp3"
+          : "/sounds/page2/k2_Chi.mp3", // sound "anh" hoặc "chị"
+        "/sounds/page2/k5_Toi_lop.mp3", // sound tới lớp
+      ].filter(Boolean);
 
       const audioContext = new (window.AudioContext ||
         (window as any).webkitAudioContext)();
@@ -93,7 +95,7 @@ export default function Home() {
     });
 
     setTimeout(() => {
-      router.push("/all_pages/trang_3");
+      router.push("/orangepicm4/trang_3");
     }, 1000);
   };
 

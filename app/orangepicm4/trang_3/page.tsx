@@ -20,7 +20,7 @@ export default function Home() {
   }, []);
 
   const handleClick = () => {
-    router.push("/all_pages/trang_4");
+    router.push("/orangepicm4/trang_4");
   };
 
   // Hàm handleSpeak cập nhật để phát file âm thanh từ local
@@ -71,19 +71,19 @@ export default function Home() {
 
         <div className="flex flex-1 items-center justify-center text-white text-[50px] font-bold gap-16 playpen-sans-special-500">
           <div
-            className="ellipse flex items-center justify-center cursor-pointer"
+            className="ellipse flex items-center justify-center transform transition-transform duration-300 hover:scale-110 cursor-pointer"
             onClick={() => handleSpeak("nhất_em_rồi.mp3")} // Sử dụng tệp âm thanh 1
           >
-            Em Quên Mất
+            Em Quên Mất Rồi
           </div>
           <div
-            className="ellipse flex items-center justify-center cursor-pointer"
+            className="ellipse flex items-center justify-center transform transition-transform duration-300 hover:scale-110 cursor-pointer"
             onClick={() => handleSpeak("tuyet_voi_em.mp3")} // Sử dụng tệp âm thanh 2
           >
             Em Đã Hoàn Thành
           </div>
           <div
-            className="ellipse flex flex-col items-center justify-center cursor-pointer"
+            className="ellipse flex flex-col items-center justify-center transform transition-transform duration-300 hover:scale-110 cursor-pointer"
             onClick={() => handleSpeak("ok.mp3")} // Sử dụng tệp âm thanh 3
           >
             <div>Bài Khó Quá,</div>
