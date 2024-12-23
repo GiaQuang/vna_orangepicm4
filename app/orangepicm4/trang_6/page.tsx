@@ -25,7 +25,7 @@ export default function Trang6() {
 
     // Tạo các hình bóng trên trang
     for (let i = 0; i < numBalls; i++) {
-      let ball = document.createElement("div");
+      const ball = document.createElement("div");
       ball.classList.add("ball");
       ball.style.background = colors[Math.floor(Math.random() * colors.length)];
       ball.style.left = `${Math.floor(Math.random() * 100)}vw`;
@@ -39,7 +39,7 @@ export default function Trang6() {
     }
 
     balls.forEach((el, i) => {
-      let to = {
+      const to = {
         x: Math.random() * (i % 2 === 0 ? -11 : 11),
         y: Math.random() * 12,
       };
