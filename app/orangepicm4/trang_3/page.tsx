@@ -72,19 +72,19 @@ export default function Home() {
         <div className="flex flex-1 items-center justify-center text-white text-[50px] font-bold gap-16 playpen-sans-special-500">
           <div
             className="ellipse flex items-center justify-center transform transition-transform duration-300 hover:scale-110 cursor-pointer"
-            onClick={() => handleSpeak("nhất_em_rồi.mp3")} // Sử dụng tệp âm thanh 1
+            onClick={() => handleSpeak("nhất_em_rồi.mp3")}
           >
             Em Quên Mất Rồi
           </div>
           <div
             className="ellipse flex items-center justify-center transform transition-transform duration-300 hover:scale-110 cursor-pointer"
-            onClick={() => handleSpeak("tuyet_voi_em.mp3")} // Sử dụng tệp âm thanh 2
+            onClick={() => handleSpeak("tuyet_voi_em.mp3")}
           >
             Em Đã Hoàn Thành
           </div>
           <div
             className="ellipse flex flex-col items-center justify-center transform transition-transform duration-300 hover:scale-110 cursor-pointer"
-            onClick={() => handleSpeak("ok.mp3")} // Sử dụng tệp âm thanh 3
+            onClick={() => handleSpeak("ok.mp3")}
           >
             <div>Bài Khó Quá,</div>
             <div>Em Chưa</div>
