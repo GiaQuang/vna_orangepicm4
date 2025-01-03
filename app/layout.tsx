@@ -17,8 +17,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Trang giao diện",
-  description: "Trang giao diện",
+  title: "PHẦM MỀM ĐIỂM DANH HỌC SINH",
+  description: "www.vnatech.com.vn",
 };
 
 export default function RootLayout({

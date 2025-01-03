@@ -100,7 +100,9 @@ export default function Home() {
   };
 
   const greetingText = userName
-    ? `${userName} à, chúc ${userSalutation.toLowerCase()} có một buổi học vui vẻ và bổ ích!`
+    ? `${
+        userName.charAt(0).toUpperCase() + userName.slice(1)
+      } à, chúc ${userSalutation.toLowerCase()} có một buổi học vui vẻ và bổ ích!`
     : "Chúc bạn có một buổi học vui vẻ và bổ ích.";
 
   return (

@@ -87,8 +87,7 @@ export default function Home() {
             onClick={() => handleSpeak("ok.mp3")}
           >
             <div>Bài Khó Quá,</div>
-            <div>Em Chưa</div>
-            <div>Làm Được</div>
+            <div>Em Chưa Làm Được</div>
           </div>
         </div>
 
