@@ -9,6 +9,7 @@ import { toast } from "sonner";
 
 export default function Home() {
   const [time, setTime] = useState(new Date());
+  //! Do không có API học sinh, nên tại trang chủ, tạo 2 box nhập giới tính và tên học sinh để test chương trình
   const [name, setName] = useState("");
   const [salutation, setSalutation] = useState("Anh");
   const router = useRouter();
