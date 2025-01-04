@@ -2,12 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import {
-  BsEmojiFrownFill,
-  BsEmojiNeutralFill,
-  BsEmojiSmileFill,
-  BsEmojiHeartEyesFill,
-} from "react-icons/bs";
 import { FaArrowCircleRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -36,21 +30,21 @@ export default function Home() {
       const salutation = userSalutation.toLowerCase();
 
       const audioFiles = [
-        "/sounds/page2/k1_hello.mp3", // sound "Hello"
+        // "/sounds/page2/k1_hello.mp3", // sound "Hello"
         salutation === "anh"
-          ? "/sounds/page2/k2_Anh.mp3" // sound "anh" nếu là nam
+          ? "/sounds/page2/k12_hello_anh.mp3" // sound "anh" nếu là nam
           : salutation === "chị"
-          ? "/sounds/page2/k2_Chi.mp3" // sound "chị" nếu là nữ
+          ? "/sounds/page2/k12_hello_chi.mp3" // sound "chị" nếu là nữ
           : null,
         userName ? `/sounds/ten_hoc_sinh/${userName.toLowerCase()}.mp3` : null, // Tên nếu có
         salutation === "anh"
           ? "/sounds/page2/k4_Dep_trai.mp3" // sound "đẹp trai" cho nam
-          : "/sounds/page2/k4_Xinh_gai.mp3", // sound "xinh gái"
-        "/sounds/page2/k5_Chao_mung.mp3", // Chào mừng
+          : "/sounds/page2/k4_Xinh_gai.mp3", // sound "xinh gái" cho nữ
+        // "/sounds/page2/k5_Chao_mung.mp3", // Chào mừng
         salutation === "anh"
-          ? "/sounds/page2/k2_Anh.mp3"
-          : "/sounds/page2/k2_Chi.mp3", // sound "anh" hoặc "chị"
-        "/sounds/page2/k5_Toi_lop.mp3", // sound tới lớp
+          ? "/sounds/page2/k5_chao_mung_anh.mp3"
+          : "/sounds/page2/k5_chao_mung_chi.mp3", // sound chúc mừng "anh" hoặc "chị"
+        // "/sounds/page2/k5_Toi_lop.mp3", // sound tới lớp
       ].filter(Boolean);
 
       const audioContext = new (window.AudioContext ||
@@ -124,29 +118,57 @@ export default function Home() {
           />
         </div>
 
-        <div className="absolute top-32 w-full text-center text-[60px] text-red-500 pacifico-regular">
+        <div className="absolute top-20 w-full text-center text-[60px] text-red-500 pacifico-regular">
           {greetingText}
           <br />
           <span>Hiện tại {userSalutation.toLowerCase()} cảm thấy thế nào?</span>
         </div>
 
-        <div className="flex flex-1 items-center justify-between text-red-500 text-[250px] mt-40">
-          <BsEmojiFrownFill
-            className="ml-60 transform transition-transform duration-300 hover:scale-110 cursor-pointer"
-            onClick={handleClick}
-          />
-          <BsEmojiNeutralFill
-            className="transform transition-transform duration-300 hover:scale-110 cursor-pointer"
-            onClick={handleClick}
-          />
-          <BsEmojiSmileFill
-            className="transform transition-transform duration-300 hover:scale-110 cursor-pointer"
-            onClick={handleClick}
-          />
-          <BsEmojiHeartEyesFill
-            className="mr-60 transform transition-transform duration-300 hover:scale-110 cursor-pointer"
-            onClick={handleClick}
-          />
+        <div className="grid grid-cols-2 gap-4 mt-52 mx-auto w-2/3">
+          {[
+            {
+              gif: "/emoji_gif/sad.gif",
+              label: "Bùn thối ruột",
+              color: "#ff6b6b",
+            },
+
+            {
+              gif: "/emoji_gif/neutral.gif",
+              label: "Trầm lặng sâu sắc",
+              color: "#b0bec5",
+            },
+            {
+              gif: "/emoji_gif/smile.gif",
+              label: "Tươi như hoa mùa xuân",
+              color: "#40c057",
+            },
+            {
+              gif: "/emoji_gif/happy.gif",
+              label: "Yêu đời không lối thoát",
+              color: "#ff4d94",
+            },
+          ].map((mood, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center justify-center p-6 bg-white rounded-lg shadow-lg hover:scale-110 cursor-pointer transform transition-all duration-300"
+              style={{ backgroundColor: mood.color }}
+              onClick={() => handleClick()}
+            >
+              <div className="relative w-[80px] h-[100px]">
+                <Image
+                  src={mood.gif}
+                  alt={mood.label}
+                  fill
+                  priority
+                  sizes="80px"
+                  className="object-contain"
+                />
+              </div>
+              <span className="text-white text-xl font-semibold mt-4">
+                {mood.label}
+              </span>
+            </div>
+          ))}
         </div>
 
         <div
