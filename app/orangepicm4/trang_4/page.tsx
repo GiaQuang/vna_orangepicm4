@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   const [rating, setRating] = useState(0);
+  const [hoveredRating, setHoveredRating] = useState(0);
   const router = useRouter();
   const [logo, setLogo] = useState("/Logo.png");
 
@@ -28,86 +29,117 @@ export default function Home() {
     setRating(index);
 
     if (index <= 3) {
-      playSound("quack.mp3"); // Phát âm thanh cho đánh giá ≤ 3 sao
-      toast.success("Ohhh, hãy cho ad biết nguyên nhân nhé!", {
+      playSound("quack.mp3");
+      toast.success("Ohhh, hãy cho mình biết nguyên nhân nhé!", {
         duration: 2000,
         position: "top-right",
         style: {
           backgroundColor: "orange",
           color: "white",
+          fontSize: "1.2rem",
+          borderRadius: "1rem",
         },
       });
 
       setTimeout(() => {
-        router.push("/orangepicm4/trang_5"); // chuyển trang 5 nếu chọn <= 3 sao
+        router.push("/orangepicm4/trang_5");
       }, 3000);
     } else {
-      playSound("yeah.mp3"); // Phát âm thanh cho đánh giá > 3 sao
-      toast.success("Tuyệt vời!", {
+      playSound("yeah.mp3");
+      toast.success("Tuyệt vời! ⭐", {
         duration: 2000,
         position: "top-right",
         style: {
           backgroundColor: "green",
           color: "white",
+          fontSize: "1.2rem",
+          borderRadius: "1rem",
         },
       });
 
       setTimeout(() => {
-        router.push("/orangepicm4/trang_6"); // Chuyển trang 6 nếu chọn 5 sao
+        router.push("/orangepicm4/trang_6");
       }, 2000);
     }
   };
 
+  const starEmojis = ["😢", "😕", "😐", "😊", "🤩"];
+
   return (
     <motion.div
-      className="min-h-screen flex flex-col select-none relative bg-gray-100"
+      className="min-h-screen flex flex-col select-none relative bg-gradient-to-b from-blue-200 via-purple-100 to-pink-100"
       initial={{ x: "100%" }}
       animate={{ x: 0 }}
-      exit={{ y: "100%" }}
-      transition={{ type: "mass", stiffness: 100 }}
+      exit={{ x: "-100%" }}
+      transition={{ duration: 0 }}
     >
-      <div className="min-h-screen flex flex-col select-none relative bg-gray-100">
-        <div className="w-[200px] h-[90px] relative">
+      <div className="min-h-screen flex flex-col select-none relative">
+        <div className="absolute top-4 left-4">
           <Image
             src={logo}
             alt="Logo"
             width={200}
             height={90}
-            className="object-contain max-w-full max-h-full"
+            className="object-contain"
           />
         </div>
-        <div className="absolute top-32 w-full text-center text-[60px] text-red-500 pacifico-regular py-2">
-          Buổi Học Hôm Nay Ổn Không Em Ơi, <br />
-          Hãy đánh giá bằng những ngôi sao nhé!
+
+        <div className="absolute top-24 w-full text-center ">
+          <motion.div
+            className="bg-white rounded-2xl py-6 px-8 shadow-lg inline-block mx-4 mt-20"
+            initial={{ y: -60, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            <h1 className="text-5xl md:text-6xl text-purple-600 font-bold leading-relaxed pacifico-regular">
+              <span className="text-yellow-500">🌟</span> Bạn ơi, buổi học hôm
+              nay có vui, có ổn không nè?{" "}
+              <span className="text-yellow-500">🌟</span>
+            </h1>
+          </motion.div>
         </div>
 
-        <div className="flex flex-1 items-center justify-center text-yellow-500 text-[200px] font-bold">
-          <div className="flex gap-16">
+        <div className="flex flex-1 flex-col items-center justify-center gap-8 mt-40">
+          <div className="flex gap-8">
             {[1, 2, 3, 4, 5].map((star) => (
-              <div
+              <motion.div
                 key={star}
-                className={`cursor-pointer transform transition-transform duration-300 
-          ${star <= rating ? "text-yellow-500" : "text-gray-400"}
-          hover:scale-110 group`}
-                onMouseEnter={() => {
-                  const starElements = document.querySelectorAll(".group");
-                  starElements.forEach((el, index) => {
-                    if (index < star) {
-                      el.classList.add("scale-110");
-                    }
-                  });
-                }}
-                onMouseLeave={() => {
-                  const starElements = document.querySelectorAll(".group");
-                  starElements.forEach((el) => {
-                    el.classList.remove("scale-110");
-                  });
-                }}
-                onClick={() => handleClick(star)}
+                className="flex flex-col items-center gap-4 cursor-pointer"
+                whileHover={{ scale: 1.1 }}
+                onHoverStart={() => setHoveredRating(star)}
+                onHoverEnd={() => setHoveredRating(0)}
               >
-                <GoStarFill />
-              </div>
+                <div
+                  className={`transition-all duration-300 ${
+                    star <= rating || star <= hoveredRating
+                      ? "text-yellow-400"
+                      : "text-gray-300"
+                  }`}
+                  style={{ fontSize: "15rem", lineHeight: "1" }} // Kích thước tùy chỉnh
+                  onClick={() => handleClick(star)}
+                >
+                  <GoStarFill className="filter drop-shadow-lg" />
+                </div>
+
+                <div className="text-4xl transition-transform duration-300">
+                  {star <= rating || star <= hoveredRating
+                    ? starEmojis[star - 1]
+                    : ""}
+                </div>
+              </motion.div>
             ))}
+          </div>
+
+          <div className="text-2xl text-purple-600 font-medium mt-8">
+            {hoveredRating > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-white px-6 py-3 rounded-full shadow-md"
+              >
+                {hoveredRating <= 3 ? "Chưa được vui à?" : "Wow, vui quá há!"}
+              </motion.div>
+            )}
           </div>
         </div>
       </div>

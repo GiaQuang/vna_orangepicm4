@@ -32,7 +32,6 @@ export default function Home() {
   const formattedTime = time.toLocaleTimeString("vi-VN", {
     hour: "2-digit",
     minute: "2-digit",
-    second: "2-digit",
   });
 
   const formattedDate = time
@@ -65,15 +64,15 @@ export default function Home() {
   return (
     <motion.div
       className="min-h-screen flex flex-col select-none relative background"
-      initial={{ y: "-100%" }}
-      animate={{ y: 0 }}
+      initial={{ x: "-100%" }}
+      animate={{ x: 0 }}
       exit={{ y: "100%" }}
       transition={{ type: "mass", stiffness: 100 }}
     >
       {[1, 2, 3, 4, 5, 6].map((index) => (
         <div key={index} className="cube"></div>
       ))}
-      <div className="w-[200px] h-[90px] relative">
+      <div className="absolute top-4 left-4">
         <Image
           src={logo}
           alt="Logo"
@@ -86,7 +85,9 @@ export default function Home() {
       {/* Thời gian thực ở giữa màn hình */}
       <div className="flex flex-1 items-center justify-center text-white text-center">
         <div>
-          <h1 className="text-8xl font-bold">{formattedTime}</h1>
+          <div className="text-9xl font-bold" style={{ fontSize: "17rem" }}>
+            {formattedTime}
+          </div>
           <p className="text-6xl mt-4">{formattedDate}</p>
 
           {/* Form nhập giới tính và tên */}

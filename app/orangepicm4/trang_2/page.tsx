@@ -101,14 +101,14 @@ export default function Home() {
 
   return (
     <motion.div
-      className="min-h-screen flex flex-col select-none relative bg-gray-100"
-      initial={{ y: "100%" }}
-      animate={{ y: 0 }}
-      exit={{ y: "100%" }}
+      className="min-h-screen flex flex-col select-none relative bg-gradient-to-b from-blue-100 to-purple-100"
+      initial={{ x: "100%" }}
+      animate={{ x: 0 }}
+      exit={{ x: "100%" }}
       transition={{ type: "mass", stiffness: 100 }}
     >
-      <div className="min-h-screen flex flex-col select-none relative bg-gray-100">
-        <div className="w-[200px] h-[90px] relative">
+      <div className="min-h-screen flex flex-col select-none relative">
+        <div className="absolute top-4 left-4">
           <Image
             src={logo}
             alt="Logo"
@@ -118,13 +118,13 @@ export default function Home() {
           />
         </div>
 
-        <div className="absolute top-20 w-full text-center text-[60px] text-red-500 pacifico-regular">
+        <div className="absolute top-40 w-full text-center text-[60px] text-red-500 pacifico-regular">
           {greetingText}
           <br />
           <span>Hiện tại {userSalutation.toLowerCase()} cảm thấy thế nào?</span>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mt-52 mx-auto w-2/3">
+        <div className="grid grid-cols-2 gap-4 mt-96 mx-auto w-2/3">
           {[
             {
               gif: "/emoji_gif/sad.gif",
@@ -148,13 +148,15 @@ export default function Home() {
               color: "#ff4d94",
             },
           ].map((mood, index) => (
-            <div
+            <motion.div
               key={index}
-              className="flex flex-col items-center justify-center p-6 bg-white rounded-lg shadow-lg hover:scale-110 cursor-pointer transform transition-all duration-300"
+              className="flex flex-col items-center justify-center p-6 bg-white rounded-lg shadow-lg cursor-pointer transform transition-all duration-300"
               style={{ backgroundColor: mood.color }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8, transition: { duration: 0.001 } }}
               onClick={() => handleClick()}
             >
-              <div className="relative w-[80px] h-[100px]">
+              <div className="relative w-[150px] h-[150px]">
                 <Image
                   src={mood.gif}
                   alt={mood.label}
@@ -164,10 +166,10 @@ export default function Home() {
                   className="object-contain"
                 />
               </div>
-              <span className="text-white text-xl font-semibold mt-4">
+              <span className="text-white text-3xl font-semibold mt-4">
                 {mood.label}
               </span>
-            </div>
+            </motion.div>
           ))}
         </div>
 

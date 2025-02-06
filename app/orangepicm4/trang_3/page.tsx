@@ -4,12 +4,12 @@ import Image from "next/image";
 import { FaArrowCircleRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react"; // Nhớ import useState
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const router = useRouter();
   const [isPlaying, setIsPlaying] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
   const [logo, setLogo] = useState("/Logo.png");
 
   useEffect(() => {
@@ -20,13 +20,12 @@ export default function Home() {
   }, []);
 
   const handleClick = () => {
-    router.push("/orangepicm4/trang_4");
+    router.push("/orangepicm4/bat_dau_hoc");
   };
 
-  // Hàm handleSpeak cập nhật để phát file âm thanh từ local
-  const handleSpeak = (audioFile: string) => {
+  const handleSpeak = (audioFile) => {
     try {
-      const audio = new Audio(`/sounds/page3/${audioFile}`); // Đảm bảo rằng file âm thanh được lưu
+      const audio = new Audio(`/sounds/page3/${audioFile}`);
 
       audio.onplay = () => {
         console.log("Bắt đầu phát âm thanh");
@@ -50,53 +49,107 @@ export default function Home() {
 
   return (
     <motion.div
-      className="min-h-screen flex flex-col select-none relative bg-gray-100"
+      className="min-h-screen flex flex-col select-none relative bg-gradient-to-b from-blue-100 to-purple-100"
       initial={{ x: "100%" }}
       animate={{ x: 0 }}
-      exit={{ y: "100%" }}
+      exit={{ x: "100%" }}
       transition={{ type: "mass", stiffness: 100 }}
     >
-      <div className="min-h-screen flex flex-col select-none relative bg-gray-100">
-        {/* Logo góc trên bên trái */}
-        <Image
-          src={logo}
-          alt="Logo"
-          width={200}
-          height={90}
-          className="object-contain max-w-full max-h-full"
-        />
-        <div className="absolute top-32 w-full text-center text-[60px] text-red-500  pacifico-regular">
-          Em à, bài tập buổi trước em đã hoàn thành rồi chứ?
+      <div className="min-h-screen flex flex-col select-none relative">
+        <div className="absolute top-4 left-4">
+          <Image
+            src={logo}
+            alt="Logo"
+            width={200}
+            height={90}
+            className="object-contain"
+          />
         </div>
 
-        <div className="flex flex-1 items-center justify-center text-white text-[50px] font-bold gap-16 playpen-sans-special-500">
-          <div
-            className="ellipse flex items-center justify-center transform transition-transform duration-300 hover:scale-110 cursor-pointer"
+        <motion.div
+          className="absolute top-24 w-full text-center text-5xl text-purple-600 font-bold leading-relaxed px-4"
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          <div className="bg-white rounded-full py-6 px-8 shadow-lg inline-block text-6xl pacifico-regular mt-24">
+            <span className="text-yellow-500">🌟</span> Bạn ơi, bài tập về nhà
+            làm xong chưa nè? <span className="text-yellow-500">🌟</span>
+          </div>
+        </motion.div>
+
+        <div className="flex flex-1 items-center justify-center gap-8 px-4 mt-48">
+          <motion.button
+            className="w-96 h-96 rounded-3xl bg-gradient-to-br from-red-400 to-red-500 shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col items-center justify-center text-white text-3xl font-bold p-6 cursor-pointer"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{
+              scale: 0.8,
+              transition: { duration: 0.001 }, // Nhanh hơn khi click
+            }}
             onClick={() => handleSpeak("nhất_em_rồi.mp3")}
           >
+            <div className="relative w-[150px] h-[150px] mb-8">
+              <Image
+                src="/emoji_gif/em_quen_mat.gif" // Đường dẫn tới GIF
+                alt="GIF icon"
+                fill
+                priority
+                sizes="80px"
+                className="object-contain"
+              />
+            </div>
             Em Quên Mất Rồi
-          </div>
-          <div
-            className="ellipse flex items-center justify-center transform transition-transform duration-300 hover:scale-110 cursor-pointer"
+          </motion.button>
+
+          <motion.button
+            className="w-96 h-96 rounded-3xl bg-gradient-to-br from-green-400 to-green-500 shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col items-center justify-center text-white text-3xl font-bold p-6 cursor-pointer"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.8, transition: { duration: 0.001 } }}
             onClick={() => handleSpeak("tuyet_voi_em.mp3")}
           >
+            <div className="relative w-[150px] h-[180px] ml-16 mb-8">
+              <Image
+                src="/emoji_gif/em_da_hoan_thanh.gif" // Đường dẫn tới GIF
+                alt="GIF icon"
+                fill
+                priority
+                sizes="80px"
+                className="object-contain"
+              />
+            </div>
             Em Đã Hoàn Thành
-          </div>
-          <div
-            className="ellipse flex flex-col items-center justify-center transform transition-transform duration-300 hover:scale-110 cursor-pointer"
+          </motion.button>
+
+          <motion.button
+            className="w-96 h-96 rounded-3xl bg-gradient-to-br from-yellow-300 to-yellow-400 shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col items-center justify-center text-white text-3xl font-bold p-6 cursor-pointer"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.8, transition: { duration: 0.001 } }}
             onClick={() => handleSpeak("ok.mp3")}
           >
-            <div>Bài Khó Quá,</div>
-            <div>Em Chưa Làm Được</div>
-          </div>
+            <div className="relative w-[150px] h-[150px] mb-8">
+              <Image
+                src="/emoji_gif/bai_kho_qua.gif" // Đường dẫn tới GIF
+                alt="GIF icon"
+                fill
+                priority
+                sizes="80px"
+                className="object-contain"
+              />
+            </div>
+            Bài Khó Quá,
+            <br />
+            Em Chưa Làm Được
+          </motion.button>
         </div>
 
-        <div
-          className="absolute bottom-4 right-4 text-blue-500 text-5xl cursor-pointer"
+        <motion.div
+          className="absolute bottom-8 right-8 cursor-pointer"
+          whileHover={{ scale: 1.2, rotate: 15 }}
+          whileTap={{ scale: 0.9 }}
           onClick={handleClick}
         >
-          <FaArrowCircleRight />
-        </div>
+          <FaArrowCircleRight className="text-6xl text-purple-500 hover:text-purple-600 transition-colors duration-300" />
+        </motion.div>
       </div>
     </motion.div>
   );

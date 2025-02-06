@@ -17,8 +17,15 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "PHẦM MỀM ĐIỂM DANH HỌC SINH",
+  title:
+    "PHẦM MỀM ĐIỂM DANH HỌC SINH - Mọi thắc mắc xin liên hệ www.vnatech.com.vn",
   description: "www.vnatech.com.vn",
+  icons: {
+    icon: "/ancho.ico", // /public path, không được dùng tên "favicon.ico"
+  },
+  appleWebApp: {
+    capable: true,
+  },
 };
 
 export default function RootLayout({

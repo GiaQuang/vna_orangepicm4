@@ -75,7 +75,7 @@ export default function Trang6() {
         if (prev === 1) {
           clearInterval(interval);
           // Chuyển trang sau khi đếm ngược kết thúc
-          window.location.href = "trang_1";
+          window.location.href = "ket_thuc_hoc";
         }
         return prev - 1;
       });
@@ -92,7 +92,7 @@ export default function Trang6() {
       exit={{ y: "100%" }}
       transition={{ type: "mass", stiffness: 100 }}
     >
-      <div className="w-[200px] h-[90px] relative">
+      <div className="absolute top-4 left-4">
         <Image
           src={logo}
           alt="Logo"
@@ -102,7 +102,7 @@ export default function Trang6() {
         />
       </div>
 
-      <div className="flex flex-col items-center justify-center mt-68">
+      <div className="flex flex-col items-center justify-center mt-72">
         <div className="text-[200px] text-red-500 bonheur-royale-regular">
           Cảm ơn,{" "}
           <span className="font-bold text-blue-500 ml-2">
@@ -121,12 +121,12 @@ export default function Trang6() {
       </div>
 
       {/* Thông báo đếm ngược ở cuối trang */}
-      <div className="text-xl text-gray-300 absolute bottom-0 left-0 right-0 text-center mb-8">
+      <div className="text-xl text-gray-300 absolute bottom-0 left-0 right-0 text-center mb-2">
         <div className="flex flex-col items-center justify-center">
           <button
-            className="mb-4 px-6 py-3 bg-white text-gray-500 text-lg rounded-lg shadow-md hover:bg-gray-200 transition-all playpen-sans-special-500"
+            className="mb-2 px-6 py-3 bg-white text-gray-500 text-lg rounded-lg shadow-md hover:bg-gray-200 transition-all playpen-sans-special-500"
             onClick={() => {
-              window.location.href = "trang_1";
+              window.location.href = "ket_thuc_hoc";
             }}
           >
             Trang Chủ
