@@ -30,21 +30,18 @@ export default function Home() {
       const salutation = userSalutation.toLowerCase();
 
       const audioFiles = [
-        // "/sounds/page2/k1_hello.mp3", // sound "Hello"
         salutation === "anh"
-          ? "/sounds/page2/k12_hello_anh.mp3" // sound "anh" nếu là nam
+          ? "/sounds/page2/k12_hello_anh.mp3"
           : salutation === "chị"
-          ? "/sounds/page2/k12_hello_chi.mp3" // sound "chị" nếu là nữ
+          ? "/sounds/page2/k12_hello_chi.mp3"
           : null,
-        userName ? `/sounds/ten_hoc_sinh/${userName.toLowerCase()}.mp3` : null, // Tên nếu có
+        userName ? `/sounds/ten_hoc_sinh/${userName.toLowerCase()}.mp3` : null,
         salutation === "anh"
-          ? "/sounds/page2/k4_Dep_trai.mp3" // sound "đẹp trai" cho nam
-          : "/sounds/page2/k4_Xinh_gai.mp3", // sound "xinh gái" cho nữ
-        // "/sounds/page2/k5_Chao_mung.mp3", // Chào mừng
+          ? "/sounds/page2/k4_Dep_trai.mp3"
+          : "/sounds/page2/k4_Xinh_gai.mp3",
         salutation === "anh"
           ? "/sounds/page2/k5_chao_mung_anh.mp3"
-          : "/sounds/page2/k5_chao_mung_chi.mp3", // sound chúc mừng "anh" hoặc "chị"
-        // "/sounds/page2/k5_Toi_lop.mp3", // sound tới lớp
+          : "/sounds/page2/k5_chao_mung_chi.mp3",
       ].filter(Boolean);
 
       const audioContext = new (window.AudioContext ||
@@ -71,7 +68,6 @@ export default function Home() {
         }
       };
 
-      // Phát âm thanh liền mạch
       await loadAndPlaySequentially(audioFiles);
     };
 
@@ -108,30 +104,32 @@ export default function Home() {
       transition={{ type: "mass", stiffness: 100 }}
     >
       <div className="min-h-screen flex flex-col select-none relative">
-        <div className="absolute top-4 left-4">
+        {/* Logo - Điều chỉnh kích thước nhỏ hơn */}
+        <div className="absolute top-2 left-2">
           <Image
             src={logo}
             alt="Logo"
-            width={200}
-            height={90}
+            width={150}
+            height={67}
             className="object-contain max-w-full max-h-full"
           />
         </div>
 
-        <div className="absolute top-40 w-full text-center text-[60px] text-red-500 pacifico-regular">
+        {/* Text - Điều chỉnh vị trí và kích thước font */}
+        <div className="absolute top-24 w-full text-center text-[40px] text-red-500 pacifico-regular">
           {greetingText}
           <br />
           <span>Hiện tại {userSalutation.toLowerCase()} cảm thấy thế nào?</span>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mt-96 mx-auto w-2/3">
+        {/* Grid - Điều chỉnh margin và gap */}
+        <div className="grid grid-cols-2 gap-3 mt-64 mx-auto w-4/5">
           {[
             {
               gif: "/emoji_gif/sad.gif",
               label: "Bùn thối ruột",
               color: "#ff6b6b",
             },
-
             {
               gif: "/emoji_gif/neutral.gif",
               label: "Trầm lặng sâu sắc",
@@ -150,13 +148,14 @@ export default function Home() {
           ].map((mood, index) => (
             <motion.div
               key={index}
-              className="flex flex-col items-center justify-center p-6 bg-white rounded-lg shadow-lg cursor-pointer transform transition-all duration-300"
+              className="flex flex-col items-center justify-center p-4 bg-white rounded-lg shadow-lg cursor-pointer transform transition-all duration-300"
               style={{ backgroundColor: mood.color }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8, transition: { duration: 0.001 } }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95, transition: { duration: 0.001 } }}
               onClick={() => handleClick()}
             >
-              <div className="relative w-[150px] h-[150px]">
+              {/* Emoji - Điều chỉnh kích thước */}
+              <div className="relative w-[100px] h-[100px]">
                 <Image
                   src={mood.gif}
                   alt={mood.label}
@@ -166,15 +165,17 @@ export default function Home() {
                   className="object-contain"
                 />
               </div>
-              <span className="text-white text-3xl font-semibold mt-4">
+              {/* Label - Điều chỉnh font size */}
+              <span className="text-white text-2xl font-semibold mt-2">
                 {mood.label}
               </span>
             </motion.div>
           ))}
         </div>
 
+        {/* Arrow button - Điều chỉnh kích thước và vị trí */}
         <div
-          className="absolute bottom-4 right-4 text-blue-500 text-5xl cursor-pointer"
+          className="absolute bottom-2 right-2 text-blue-500 text-4xl cursor-pointer"
           onClick={handleClick}
         >
           <FaArrowCircleRight />

@@ -39,8 +39,8 @@ export default function Home() {
           <Image
             src={logo}
             alt="Logo"
-            width={200}
-            height={90}
+            width={150}
+            height={67}
             className="object-contain"
           />
         </div>
@@ -52,7 +52,7 @@ export default function Home() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl text-purple-600 font-bold leading-relaxed pacifico-regular">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl text-purple-600 font-bold leading-relaxed pacifico-regular">
             <motion.span
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}

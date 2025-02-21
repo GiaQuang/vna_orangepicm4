@@ -60,8 +60,8 @@ export default function Home() {
           <Image
             src={logo}
             alt="Logo"
-            width={200}
-            height={90}
+            width={150}
+            height={67}
             className="object-contain"
           />
         </div>
@@ -72,15 +72,15 @@ export default function Home() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
-          <div className="bg-white rounded-full py-6 px-8 shadow-lg inline-block text-6xl pacifico-regular mt-24">
+          <div className="bg-white rounded-full py-6 px-8 shadow-lg inline-block text-4xl pacifico-regular mt-8">
             <span className="text-yellow-500">🌟</span> Bạn ơi, bài tập về nhà
             làm xong chưa nè? <span className="text-yellow-500">🌟</span>
           </div>
         </motion.div>
 
-        <div className="flex flex-1 items-center justify-center gap-8 px-4 mt-48">
+        <div className="flex flex-1 items-center justify-center gap-8 px-4 mt-24">
           <motion.button
-            className="w-96 h-96 rounded-3xl bg-gradient-to-br from-red-400 to-red-500 shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col items-center justify-center text-white text-3xl font-bold p-6 cursor-pointer"
+            className="w-80 h-80 rounded-3xl bg-gradient-to-br from-red-400 to-red-500 shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col items-center justify-center text-white text-3xl font-bold p-6 cursor-pointer"
             whileHover={{ scale: 1.1 }}
             whileTap={{
               scale: 0.8,
@@ -102,7 +102,7 @@ export default function Home() {
           </motion.button>
 
           <motion.button
-            className="w-96 h-96 rounded-3xl bg-gradient-to-br from-green-400 to-green-500 shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col items-center justify-center text-white text-3xl font-bold p-6 cursor-pointer"
+            className="w-80 h-80 rounded-3xl bg-gradient-to-br from-green-400 to-green-500 shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col items-center justify-center text-white text-3xl font-bold p-6 cursor-pointer"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.8, transition: { duration: 0.001 } }}
             onClick={() => handleSpeak("tuyet_voi_em.mp3")}
@@ -121,7 +121,7 @@ export default function Home() {
           </motion.button>
 
           <motion.button
-            className="w-96 h-96 rounded-3xl bg-gradient-to-br from-yellow-300 to-yellow-400 shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col items-center justify-center text-white text-3xl font-bold p-6 cursor-pointer"
+            className="w-80 h-80 rounded-3xl bg-gradient-to-br from-yellow-300 to-yellow-400 shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col items-center justify-center text-white text-3xl font-bold p-6 cursor-pointer"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.8, transition: { duration: 0.001 } }}
             onClick={() => handleSpeak("ok.mp3")}

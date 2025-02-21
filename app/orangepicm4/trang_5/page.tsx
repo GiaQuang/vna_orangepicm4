@@ -32,14 +32,14 @@ export default function Home() {
             src={logo}
             alt="Logo"
             width={150}
-            height={68}
+            height={67}
             className="object-contain"
           />
         </div>
 
-        <div className="mt-24 text-center px-4">
+        <div className="mt-12 text-center px-4">
           <div className="bg-white rounded-2xl py-6 px-8 shadow-lg inline-block mt-20">
-            <h1 className="text-6xl md:text-6xl text-purple-600 font-bold leading-relaxed pacifico-regular">
+            <h1 className="text-5xl md:text-5xl text-purple-600 font-bold leading-relaxed pacifico-regular">
               <span className="text-yellow-500"></span> Bạn ơi, điều gì ảnh
               hưởng đến bạn hôm nay vậy?{" "}
               <span className="text-yellow-500"></span>
@@ -47,9 +47,9 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center items-center gap-8 mt-32 px-4">
+        <div className="flex flex-wrap justify-center items-center gap-8 mt-20 px-4">
           <motion.button
-            className="w-96 h-96 rounded-3xl bg-gradient-to-br from-blue-400 to-blue-500 shadow-lg flex flex-col items-center justify-center text-white text-3xl font-bold p-6 cursor-pointer"
+            className="w-80 h-80 rounded-3xl bg-gradient-to-br from-blue-400 to-blue-500 shadow-lg flex flex-col items-center justify-center text-white text-3xl font-bold p-6 cursor-pointer"
             whileHover={{ scale: 1.05, y: -5 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleNavigation}
@@ -68,7 +68,7 @@ export default function Home() {
           </motion.button>
 
           <motion.button
-            className="w-96 h-96 rounded-3xl bg-gradient-to-br from-purple-400 to-purple-500 shadow-lg flex flex-col items-center justify-center text-white text-3xl font-bold p-6 cursor-pointer"
+            className="w-80 h-80 rounded-3xl bg-gradient-to-br from-purple-400 to-purple-500 shadow-lg flex flex-col items-center justify-center text-white text-3xl font-bold p-6 cursor-pointer"
             whileHover={{ scale: 1.05, y: -5 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleNavigation}
@@ -87,7 +87,7 @@ export default function Home() {
           </motion.button>
 
           <motion.button
-            className="w-96 h-96 rounded-3xl bg-gradient-to-br from-orange-400 to-orange-500 shadow-lg flex flex-col items-center justify-center text-white text-3xl font-bold p-6 cursor-pointer text-center"
+            className="w-80 h-80 rounded-3xl bg-gradient-to-br from-orange-400 to-orange-500 shadow-lg flex flex-col items-center justify-center text-white text-3xl font-bold p-6 cursor-pointer text-center"
             whileHover={{ scale: 1.05, y: -5 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleNavigation}
@@ -108,7 +108,7 @@ export default function Home() {
           </motion.button>
         </div>
 
-        <div className="text-center text-purple-600 text-xl mt-8 mb-4">
+        <div className="text-center text-purple-600 text-xl mt-36 mb-4">
           Đừng lo nhé! Chúng ta sẽ cùng nhau cải thiện! 💪
         </div>
       </div>

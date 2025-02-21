@@ -78,8 +78,8 @@ export default function Home() {
           <Image
             src={logo}
             alt="Logo"
-            width={200}
-            height={90}
+            width={150}
+            height={67}
             className="object-contain"
           />
         </div>
@@ -91,7 +91,7 @@ export default function Home() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            <h1 className="text-5xl md:text-6xl text-purple-600 font-bold leading-relaxed pacifico-regular">
+            <h1 className="text-4xl md:text-5xl text-purple-600 font-bold leading-relaxed pacifico-regular">
               <span className="text-yellow-500">🌟</span> Bạn ơi, buổi học hôm
               nay có vui, có ổn không nè?{" "}
               <span className="text-yellow-500">🌟</span>
@@ -115,7 +115,7 @@ export default function Home() {
                       ? "text-yellow-400"
                       : "text-gray-300"
                   }`}
-                  style={{ fontSize: "15rem", lineHeight: "1" }} // Kích thước tùy chỉnh
+                  style={{ fontSize: "12rem", lineHeight: "1" }} // Kích thước tùy chỉnh
                   onClick={() => handleClick(star)}
                 >
                   <GoStarFill className="filter drop-shadow-lg" />

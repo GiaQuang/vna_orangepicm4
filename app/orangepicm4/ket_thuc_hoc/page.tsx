@@ -74,8 +74,8 @@ export default function Home() {
             <Image
               src={logo}
               alt="Logo"
-              width={200}
-              height={90}
+              width={150}
+              height={67}
               className="object-contain"
             />
           </motion.div>
@@ -89,13 +89,13 @@ export default function Home() {
             transition={{ duration: 0.6 }}
           >
             <motion.h1
-              className="text-4xl md:text-5xl lg:text-6xl text-purple-600 font-bold leading-relaxed pacifico-regular"
+              className="text-3xl md:text-4xl lg:text-5xl text-purple-600 font-bold leading-relaxed pacifico-regular"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
               <motion.div
-                className="mb-4 text-yellow-500 text-7xl"
+                className="mb-4 text-yellow-500 text-6xl"
                 animate={{
                   y: [0, -10, 0],
                   rotate: [-5, 5, -5],
@@ -108,11 +108,11 @@ export default function Home() {
               >
                 🎓
               </motion.div>
-              <span className="mb-2">Vậy là kết thúc buổi học rồi,</span>
+              <span className="mb-2 ">Vậy là kết thúc buổi học rồi,</span>
               <br />
               <span
-                className="bg-gradient-to-r from-purple-600 to-pink-500 text-transparent bg-clip-text mt-4"
-                style={{ lineHeight: "1.8" }}
+              // className="bg-gradient-to-r from-purple-600 to-pink-500 text-transparent bg-clip-text mt-4"
+              // style={{ lineHeight: "1.8" }}
               >
                 hãy cùng đánh giá buổi học hôm nay nhé!
               </span>
@@ -131,7 +131,7 @@ export default function Home() {
 
           {/* Bottom Emojis */}
           <motion.div
-            className="absolute bottom-20 flex gap-8 text-6xl"
+            className="absolute bottom-20 flex gap-8 text-5xl"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.7 }}
